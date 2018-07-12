@@ -200,7 +200,7 @@
 
         }]).
 
-        controller('UserController', ['$scope', '$rootScope', 'socket', 'socketCommands', 'users', 'entries', function ($scope, $rootScope, socket, socketCommands, users, entries){
+        controller('UserController', ['$scope', '$rootScope', '$cookies', 'socket', 'socketCommands', 'users', 'entries', function ($scope, $rootScope, $cookies, socket, socketCommands, users, entries){
             
             $scope.users = {};
 
@@ -225,6 +225,7 @@
 
             $scope.users.select = function(user) {
                 $rootScope.selectedUser = user;
+                $cookies.putObject("selectedUser", $rootScope.selectedUser);
                 entries.getUserEntries(user);
             };
             
